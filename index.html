@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scripture - Biblical Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&family=DM+Sans:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f5f5f3;
+            --surface: #ffffff;
+            --text: #1a1a1a;
+            --border: #e0e0e0;
+        }
+
+        body {
+            background-color: var(--bg);
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .scripture-card {
+            background: var(--surface);
+            padding: 60px 40px;
+            max-width: 450px;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        /* Decorative border element */
+        .scripture-card::after {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid var(--border);
+            pointer-events: none;
+        }
+
+        .verse-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-style: italic;
+            line-height: 1.4;
+            color: var(--text);
+            margin-bottom: 25px;
+        }
+
+        .reference {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .btn-next {
+            margin-top: 40px;
+            background: transparent;
+            border: 1px solid var(--text);
+            padding: 10px 25px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-next:hover {
+            background: var(--text);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scripture-card">
+        <div id="verse-container">
+            <p class="verse-text" id="verse">"For I know the plans I have for you," declares the LORD, "plans to prosper you and not to harm you, plans to give you hope and a future."</p>
+            <p class="reference" id="ref">Jeremiah 29:11</p>
+        </div>
+        <button class="btn-next" onclick="nextVerse()">Reflect Further</button>
+    </div>
+
+    <script>
+        /**
+         * DOCUMENTATION:
+         * scriptures: An array of Bible verses stored as objects.
+         * nextVerse: Function to cycle through the array and update the innerHTML of the verse container.
+         */
+        const scriptures = [
+            { v: "\"The Lord is my shepherd; I shall not want.\"", r: "Psalm 23:1" },
+            { v: "\"Trust in the LORD with all your heart and lean not on your own understanding.\"", r: "Proverbs 3:5" },
+            { v: "\"Be strong and courageous. Do not be afraid; do not be discouraged.\"", r: "Joshua 1:9" }
+        ];
+
+        let index = 0;
+
+        function nextVerse() {
+            index = (index + 1) % scriptures.length;
+            document.getElementById('verse').textContent = scriptures[index].v;
+            document.getElementById('ref').textContent = scriptures[index].r;
+        }
+    </script>
+</body>
+</html>
